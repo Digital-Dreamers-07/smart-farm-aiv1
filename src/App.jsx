@@ -167,9 +167,10 @@ const App = () => {
                   </Link>
 
                   <Link
+                    onClick={toggleMenu}
                     to="/farmbot"
                     style={{ textDecoration: "none", color: "white" }}
-                    className="text-[15px] text-white text-decoration:none hover:text-decoration:none transition flex items-center hover:text-red-400"
+                    className=" text-[15px] text-black"
                   >
                     🤖 Chat with FarmBot
                   </Link>
