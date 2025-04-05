@@ -273,12 +273,12 @@ const App = () => {
           </button>
 
           {showFarmBot && (
-            <div className="fixed bottom-32 right-6 z-50 w-[90vw] sm:w-[400px] h-[500px] bg-white text-black rounded-2xl shadow-xl overflow-hidden">
+            <div className="fixed bottom-32 right-6 z-50 w-[500px] sm:w-[400px] h-[500px] bg-white text-black rounded-2xl shadow-xl overflow-hidden">
               <div className="flex justify-between items-center bg-green-700 text-white px-4 py-2 rounded-t-2xl">
                 <h2 className="text-[15px] font-semibold">FarmBot Assistant</h2>
                 <button onClick={toggleFarmBot} className="text-2xl">✖</button>
               </div>
-              <div className="h-full overflow-y-auto p-4">
+              <div className=" h-full overflow-y-auto p-4">
                 <FarmBot />
               </div>
             </div>

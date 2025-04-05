@@ -1,3 +1,4 @@
+// ... same imports
 import React, { useState, useRef, useEffect } from "react";
 import {
   FaRobot,
@@ -152,8 +153,10 @@ const FarmBot = () => {
   return (
     <div className="min-h-screen bg-green-50 px-4 py-8">
       <div className="max-w-3xl mx-auto bg-white rounded-xl shadow-lg p-6 sm:p-10">
-        <h2 className="text-2xl sm:text-3xl font-bold  mb-6 text-center flex items-center justify-center gap-2 ">
-        <div className="text-green-600 "><FaRobot  className="inline"/> Smart FarmBot: Farming Advice</div> 
+        <h2 className="text-2xl sm:text-3xl font-bold mb-6 text-center flex items-center justify-center gap-2">
+          <div className="text-green-600">
+            <FaRobot className="inline" /> Smart FarmBot: Farming Advice
+          </div>
         </h2>
 
         {/* Input Section */}
@@ -201,11 +204,11 @@ const FarmBot = () => {
         {/* Advice Output Section */}
         {advice && (
           <div className="bg-gray-100 border border-green-300 rounded-md p-4 sm:p-6">
-            <div className="flex justify-between items-center mb-3">
-              <h2 className="text-lg sm:text-xl font-bold text-black">
+            <div className="flex justify-between items-start mb-3 flex-col sm:flex-row sm:items-center">
+              <h2 className="text-lg sm:text-xl font-bold text-black mb-2 sm:mb-0">
                 🧠 FarmBot Says:
               </h2>
-              <div className="flex items-center gap-2">
+              <div className="flex flex-col sm:flex-row items-start sm:items-center gap-2">
                 <select
                   value={voiceLang}
                   onChange={(e) => setVoiceLang(e.target.value)}
