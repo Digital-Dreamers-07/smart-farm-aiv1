@@ -267,6 +267,7 @@ const App = () => {
         <div>
           <button
             onClick={toggleFarmBot}
+            style={{borderRadius: "25px", backgroundColor: "#4CAF50", color: "white", padding: "10px 20px", border: "none", cursor: "pointer"}} 
             className="fixed bottom-18 right-6 z-50  bg-green-600 hover:bg-green-700 text-white p-3  shadow-lg transition duration-300 flex items-center gap-2 rounded-2xl"
           >
             🤖 Chat with FarmBot
@@ -287,7 +288,8 @@ const App = () => {
         
          
         {/* Footer */}
-        <footer className="bg-green-800 text-white fixed bottom-0 left-0 w-full text-center shadow-lg z-10">
+        <footer className="bg-green-800 text-white fixed bottom-0 left-0 w-full text-center shadow-lg z-10"
+        style={{ color: "#ecf0f1", fontSize: "14px", borderTop: "1px solid #bdc3c7"}}>
           <p className="py-2">© {new Date().getFullYear()} Smart Farming Assistant. All rights reserved.</p>
         </footer>
 
