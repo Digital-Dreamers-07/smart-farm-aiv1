@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { fetchRecommendations } from "./api";
+import Loader from "./CropRecommendations";
 
 const CropForm = ({ setRecommendations, setLoading }) => {
   const [soil, setSoil] = useState("");
