@@ -19,7 +19,6 @@ const MarketPrices = () => {
 
     try {
       const result = await fetchGeminiCropPrices(category);
-      console.log("Raw Response:", result); // Debugging the response
       setPrices(result);
     } catch (error) {
       setError("Failed to fetch market prices.");
@@ -28,7 +27,6 @@ const MarketPrices = () => {
     }
   };
 
-  // Improved Parsing Function
   const parsePrices = () => {
     if (!prices) return [];
 
@@ -49,7 +47,6 @@ const MarketPrices = () => {
       }
     }
 
-    console.log("Parsed Crops:", crops); // Debug the parsed data
     return crops;
   };
 
@@ -57,15 +54,15 @@ const MarketPrices = () => {
   const visibleCrops = showAll ? cropList : cropList.slice(0, 10);
 
   return (
-    <div className="p-8 bg-gray-50 min-h-screen text-black">
-      <div className="max-w-6xl mx-auto bg-white shadow-lg rounded-lg p-8">
-        <h1 className="text-4xl font-bold text-green-600 mb-6 text-center">
-          🌾 Top 20 Crop Market Prices
+    <div className="p-6 bg-green-50 min-h-screen text-green-900">
+      <div className="max-w-5xl mx-auto bg-white border border-green-200 shadow-lg rounded-2xl p-6">
+        <h1 className="text-2xl md:text-3xl font-bold text-center text-green-700 mb-6">
+          🌿 Crop Market Prices
         </h1>
 
-        <div className="flex gap-4">
+        <div className="flex flex-col sm:flex-row gap-3 mb-5">
           <select
-            className="border border-black p-2 rounded-lg w-full text-black"
+            className="border border-green-300 p-2 rounded-lg text-sm w-full focus:ring-2 focus:ring-green-400 bg-green-50 text-green-900"
             value={category}
             onChange={(e) => setCategory(e.target.value)}
           >
@@ -78,55 +75,55 @@ const MarketPrices = () => {
 
           <button
             onClick={handleFetchPrices}
-            className="bg-blue-500 text-white px-6 py-2 rounded-lg hover:bg-blue-600 transition"
+            className="bg-green-600 hover:bg-green-700 text-white text-sm px-4 py-2 rounded-lg transition w-full sm:w-auto"
             disabled={loading}
           >
             {loading ? "Fetching..." : "Get Prices"}
           </button>
         </div>
 
-        {error && <p className="text-red-500 mt-4">{error}</p>}
+        {error && <p className="text-red-600 text-sm mb-3">{error}</p>}
 
         {loading && (
-          <div className="text-center mt-6">
-            <p className="text-blue-500">Loading market prices...</p>
+          <div className="text-center mt-4">
+            <p className="text-green-500 text-sm">Loading market prices...</p>
           </div>
         )}
 
         {cropList.length > 0 && (
-          <div className="mt-6">
-            <h2 className="text-2xl font-semibold mb-4 text-green-700">
-              Market Prices for {category.charAt(0).toUpperCase() + category.slice(1)}
+          <div className="mt-4">
+            <h2 className="text-xl font-semibold text-green-700 mb-3">
+              📦 Prices for <span className="capitalize">{category}</span>
             </h2>
 
             <div className="overflow-x-auto">
-              <table className="min-w-full bg-white shadow-md rounded-lg">
+              <table className="min-w-full bg-white rounded-md shadow-sm border border-green-200 text-sm">
                 <thead className="bg-green-600 text-white">
                   <tr>
-                    <th className="px-6 py-3 text-left text-sm font-semibold">🌾 Crop Name</th>
-                    <th className="px-6 py-3 text-left text-sm font-semibold">💰 Price Range</th>
-                    <th className="px-6 py-3 text-left text-sm font-semibold">📍 Region</th>
+                    <th className="px-4 py-2 text-left">🌾 Crop</th>
+                    <th className="px-4 py-2 text-left">💰 Price</th>
+                    <th className="px-4 py-2 text-left">📍 Region</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-gray-200">
+                <tbody className="divide-y divide-green-100">
                   {visibleCrops.map((item, index) => (
                     <tr
                       key={index}
-                      className="hover:bg-gray-100 transition duration-300"
+                      className="hover:bg-green-50 transition duration-200"
                     >
-                      <td className="px-6 py-4 font-medium">{item.crop}</td>
-                      <td className="px-6 py-4">{item.price}</td>
-                      <td className="px-6 py-4">{item.region}</td>
+                      <td className="px-4 py-3">{item.crop}</td>
+                      <td className="px-4 py-3">{item.price}</td>
+                      <td className="px-4 py-3">{item.region}</td>
                     </tr>
                   ))}
                 </tbody>
               </table>
             </div>
 
-            <div className="text-center mt-6">
+            <div className="text-center mt-5">
               <button
                 onClick={() => setShowAll((prev) => !prev)}
-                className="bg-blue-500 text-white px-6 py-2 rounded-lg hover:bg-blue-600 transition"
+                className="bg-green-500 hover:bg-green-600 text-white text-sm px-4 py-2 rounded-lg transition"
               >
                 {showAll ? "Show Less" : "View More"}
               </button>
@@ -134,8 +131,10 @@ const MarketPrices = () => {
           </div>
         )}
 
-        {cropList.length === 0 && !loading && (
-          <p className="text-center text-gray-500 mt-6">No crop prices available.</p>
+        {!loading && cropList.length === 0 && (
+          <p className="text-center text-gray-500 mt-6 text-sm">
+            No crop prices available.
+          </p>
         )}
       </div>
     </div>

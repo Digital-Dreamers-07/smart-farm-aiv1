@@ -6,9 +6,8 @@ const Weather = () => {
   const [weather, setWeather] = useState(null);
   const [error, setError] = useState("");
 
-  const OPENWEATHER_API_KEY = "YOUR_OPENWEATHER_API_KEY"; // Replace with your OpenWeather API Key
+  const OPENWEATHER_API_KEY = "20ec30b398d36ddf199771457ca5c958"; // Replace with actual API key
 
-  // Function to get latitude and longitude using OpenStreetMap API
   const getCoordinates = async (location) => {
     try {
       const response = await axios.get(
@@ -27,7 +26,6 @@ const Weather = () => {
     }
   };
 
-  // Fetch Weather Data
   const getWeather = async (lat, lon) => {
     try {
       const response = await axios.get(
@@ -55,40 +53,54 @@ const Weather = () => {
   };
 
   return (
-    <div className="bg-white p-8 rounded-lg shadow-lg text-black">
-      <h1 className="text-3xl font-bold text-blue-600 mb-4">Weather Conditions</h1>
+    <div className="bg-white/80 p-8 rounded-2xl shadow-xl border border-green-200 max-w-xl mx-auto">
+      <h1 className="text-3xl font-bold text-green-700 mb-6 text-center">
+        🌿 Weather Conditions
+      </h1>
 
-      <form onSubmit={handleSubmit} className="mb-6">
-        <div className="mb-4">
-          <label className="block font-semibold">Location:</label>
+      <form onSubmit={handleSubmit} className="space-y-4">
+        <div>
+          <label className="block text-sm font-semibold text-green-800 mb-1">
+            Location
+          </label>
           <input
             type="text"
             value={location}
             onChange={(e) => setLocation(e.target.value)}
             placeholder="Enter city or place"
-            className="w-full p-2 border border-black rounded-lg"
+            className="w-full px-4 py-2 rounded-xl border border-green-300 focus:outline-none focus:ring-2 focus:ring-green-400 text-green-900 placeholder-green-400"
             required
           />
         </div>
 
         <button
           type="submit"
-          className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition"
+          className="w-full bg-green-600 hover:bg-green-700 text-white font-medium py-2 rounded-xl shadow-md transition"
         >
           Get Weather
         </button>
       </form>
 
-      {error && <p className="text-red-500">{error}</p>}
+      {error && <p className="text-red-600 mt-4 text-sm">{error}</p>}
 
       {weather && (
-        <div className="mt-6">
-          <h2 className="text-2xl font-bold">Weather in {weather.name}</h2>
-          <ul className="mt-4 text-lg">
-            <li>🌡️ <strong>Temperature:</strong> {weather.main.temp} °C</li>
-            <li>🌥️ <strong>Condition:</strong> {weather.weather[0].description}</li>
-            <li>💧 <strong>Humidity:</strong> {weather.main.humidity}%</li>
-            <li>💨 <strong>Wind Speed:</strong> {weather.wind.speed} m/s</li>
+        <div className="mt-8 bg-white border border-green-100 rounded-xl shadow-md p-6 text-green-800">
+          <h2 className="text-2xl font-bold mb-4 text-center">
+            Weather in {weather.name}
+          </h2>
+          <ul className="space-y-2 text-base">
+            <li>
+              🌡️ <strong>Temperature:</strong> {weather.main.temp} °C
+            </li>
+            <li>
+              🌥️ <strong>Condition:</strong> {weather.weather[0].description}
+            </li>
+            <li>
+              💧 <strong>Humidity:</strong> {weather.main.humidity}%
+            </li>
+            <li>
+              💨 <strong>Wind Speed:</strong> {weather.wind.speed} m/s
+            </li>
           </ul>
         </div>
       )}
